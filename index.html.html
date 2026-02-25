@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana & Israel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Playfair Display', serif;
+    background:#f4f1ec;
+    color:#2f3e55;
+    text-align:center;
+}
+
+.container{
+    padding:40px 20px;
+}
+
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:60px;
+    margin:20px 0;
+    color:#3d5170;
+}
+
+.versiculo{
+    font-size:16px;
+    margin-bottom:30px;
+}
+
+.data{
+    font-size:28px;
+    margin:20px 0;
+}
+
+.hora{
+    font-size:22px;
+    margin-bottom:30px;
+}
+
+.countdown{
+    margin:30px 0;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.box{
+    background:#5c6f8f;
+    color:white;
+    padding:15px 20px;
+    border-radius:15px;
+    min-width:80px;
+}
+
+.box span{
+    display:block;
+    font-size:26px;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 25px;
+    margin:10px;
+    background:#5c6f8f;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#3d5170;
+}
+
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#3d5170;
+    color:white;
+    border:none;
+    padding:12px 15px;
+    border-radius:50%;
+    font-size:18px;
+}
+
+footer{
+    margin-top:40px;
+    font-size:14px;
+    opacity:0.7;
+}
+</style>
+</head>
+<body>
+
+<!-- 🎵 Música -->
+<audio id="bg-music" loop>
+    <source src="music.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<p class="versiculo">
+“Para que todos vejam e saibam e considerem e juntamente entendam que a mão do Senhor fez isso.”<br>
+Isaías 41:20
+</p>
+
+<p>Convidam para a cerimônia de seu casamento</p>
+
+<h1>Ana & Israel</h1>
+
+
+<div class="data">
+SÁBADO | 11 | ABRIL
+</div>
+
+<div class="hora">
+15:00
+</div>
+
+<!-- ⏳ Contagem regressiva -->
+<div class="countdown">
+    <div class="box"><span id="days">0</span>Dias</div>
+    <div class="box"><span id="hours">0</span>Horas</div>
+    <div class="box"><span id="minutes">0</span>Min</div>
+    <div class="box"><span id="seconds">0</span>Seg</div>
+</div>
+
+<a class="btn" href="https://maps.google.com" target="_blank">📍 Localização</a>
+<a class="btn" href="https://wa.me/55SEUNUMERO" target="_blank">📲 Confirmar Presença</a>
+
+<footer>
+Com amor, Ana & Israel 💙
+</footer>
+
+</div>
+
+<!-- 🎵 Botão música -->
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<script>
+// Data do casamento (ano, mês-1, dia, hora, minuto)
+const weddingDate = new Date(2026, 3, 11, 15, 0, 0).getTime();
+
+const countdown = setInterval(function(){
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+    if(distance < 0){
+        clearInterval(countdown);
+        document.querySelector(".countdown").innerHTML = "💍 É Hoje!";
+    }
+}, 1000);
+
+// Musica
+function toggleMusic(){
+    const music = document.getElementById("bg-music");
+    if(music.paused){
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>
